@@ -11,5 +11,5 @@ jobs:
         python-version: '3.10.12'
       
       #Pythonのバージョン確認
-      name: Print Python version
+      - name: Print Python version
       run: python --version
