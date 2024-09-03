@@ -4,12 +4,9 @@ jobs:
   demo:
     runs-on: ubuntu-latest
     steps:
-      #Python3.12環境のセットアップ
       - name: Set up Python 3.10.12
       uses: actions/setup-python@v4
       with:
         python-version: '3.10.12'
-      
-      #Pythonのバージョン確認
       - name: Print Python version
-      run: python --version
+        run: python --version
