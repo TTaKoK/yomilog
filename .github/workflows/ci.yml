@@ -1,0 +1,29 @@
+name: Run test and linter
+on: push
+jobs:
+  test-and-lint:
+    runs-on: ubuntu-latest
+    steps:
+      #ソースコードのチェックアウト
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      #Dockerイメージのビルド
+      - name: Build docker images
+        run: docker compose build
+      
+      #Dockerコンテナの作成とビルド
+      - name: Create and start docker containers
+        run: docker compose up -d
+
+      #開発用ライブラリインストール
+      - name: Install libraries for development
+        run: docker compose exec yomilog pip install -r ../requirments-dev.txt
+      
+      #ユニットテスト実行
+      - name: Run test
+        run: docker compose exec yomilog pytest
+
+      #Dockerコンテナ停止、削除
+      - name: Stop and remove docker containers
+        run: docker compose down
